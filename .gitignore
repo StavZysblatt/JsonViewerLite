@@ -1,0 +1,24 @@
+# Python
+.venv*
+__pycache__/
+*.pyc
+
+# Node / React
+node_modules/
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+*.log
+
+# macOS
+.DS_Store
+
+# Editor files
+.idea/
+.vscode/
+
+# Backups
+*.bak
