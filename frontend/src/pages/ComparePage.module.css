@@ -45,3 +45,22 @@
     white-space: pre-wrap;
   }
   
+  .compareGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+
+.card {
+  background: #2a2a2a;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.diffSection {
+  margin-top: 3rem;
+}

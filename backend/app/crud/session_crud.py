@@ -25,12 +25,12 @@ async def save_session(parsed: ParsedSessionModel, summary: SummaryModel):
 async def get_session_by_id(session_id: str):
     collection = get_sessions_collection()
 
-    # First try: match on parsed.sessionId (sessionId user sees)
+    
     doc = await collection.find_one({"parsed.sessionId": session_id})
     if doc:
         return doc
 
-    # Second: also allow searching by Mongo ObjectId
+    
     try:
         oid = ObjectId(session_id)
         doc = await collection.find_one({"_id": oid})
