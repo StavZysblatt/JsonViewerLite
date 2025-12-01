@@ -1,0 +1,34 @@
+{
+    "project": {
+      "name": "JSON Viewer Lite",
+      "description": "A simplified JSON viewer built with React + MobX (frontend) and FastAPI (backend). Users can upload session JSON files and visualize basic behaviors like scatter plots, heatmaps, and timelines.",
+      "goals": [
+        "Keep architecture simple",
+        "Use only React + MobX for state management",
+        "Use FastAPI as the single backend",
+        "No Node.js API layer in the MVP",
+        "Avoid over-engineering or adding unnecessary services"
+      ],
+      "techStack": {
+        "frontend": ["React", "MobX", "Axios", "D3.js", "heatmap.js", "react-dropzone", "react-json-view-lite"],
+        "backend": ["FastAPI", "Pydantic", "Uvicorn"],
+        "storage": "Local JSON files only"
+      },
+      "rules": [
+        "Always keep backend under /backend and frontend under /frontend",
+        "Follow clean, readable, beginner-friendly patterns",
+        "Do not generate advanced backend layers unless requested",
+        "Visualizations must use D3.js or heatmap.js",
+        "Avoid unnecessary abstractions, factories, or complex patterns",
+        "Follow REST best practices for FastAPI endpoints",
+        "Reduce complexity wherever possible"
+      ],
+      "guidelines": [
+        "When generating frontend code, prefer functional components",
+        "Use MobX stores instead of Redux or Context API",
+        "Write FastAPI endpoints in a simple router-based structure",
+        "Keep code modular but not fragmented",
+        "Prioritize clarity over architecture patterns"
+      ]
+    }
+  }

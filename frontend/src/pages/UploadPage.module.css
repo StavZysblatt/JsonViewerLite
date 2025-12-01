@@ -1,0 +1,46 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #4338ca;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+.resultBox {
+  background: hsl(0, 3%, 88%);
+  border: 1px solid #fffbfb;
+  padding: 1rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
