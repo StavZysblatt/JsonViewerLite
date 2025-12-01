@@ -1,10 +1,10 @@
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv() #Needs to load first
 from fastapi import FastAPI
 from app.routers.sessions import router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
-
+#Testing this comment
 
 
 app = FastAPI()
