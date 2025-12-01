@@ -22,3 +22,5 @@ build/
 
 # Backups
 *.bak
+
+.cursor.json
