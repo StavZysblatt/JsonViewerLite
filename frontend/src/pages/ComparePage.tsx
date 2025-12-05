@@ -55,8 +55,8 @@ export default function ComparePage() {
                     </div>
 
                     <div>
-                        <h3>Session B</h3>
-                        <SessionView data={result.sessions[1]} />
+                     <h3>Session B</h3>
+                      <SessionView data={result.sessions[1]} />
                     </div>
 
                     <div className={styles.card}>

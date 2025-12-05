@@ -59,7 +59,8 @@ def get_structure(): #Not async because it's a simple endpoint that returns a st
     }
 
 @router.post('/compare', response_model=CompareResponseModel)
-async def compare_sessions(request: CompareRequestModel):
+async def compare_sessions(request: CompareRequestModel):   
+
     ids = request.sessionIds
 
     if len(ids) != 2:
@@ -93,4 +94,17 @@ async def compare_sessions(request: CompareRequestModel):
             }
         ],
         "diff": diff
+    }
+
+@router.get("/sessions/{session_id}", response_model=CompareSessionModel)
+async def get_session(session_id: str):
+    doc = await get_session_by_id(session_id)
+
+    if not doc:
+        raise HTTPException(status_code=404, detail="Session not found")
+    
+    return {
+        "id": str(doc["_id"]),
+        "parsed": doc["parsed"],
+        "summary": doc["summary"]
     }

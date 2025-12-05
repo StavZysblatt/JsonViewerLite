@@ -1,0 +1,19 @@
+.nav {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    background: #1e1e1e;
+    border-bottom: 1px solid #333;
+  }
+  
+  .link {
+    color: #eee;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
