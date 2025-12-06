@@ -2,10 +2,11 @@ import { useState } from "react";
 import { getSession } from "../api/sessions";
 import SessionView from "../components/SessionView";
 import styles from "./ReviewPage.module.css"
+import type { UploadResponse } from "../types/session";
 
 export default function ReviewPage(){
     const [sessionId, setSessionId] = useState("");
-    const [session, setSession] = useState<any>(null);
+    const [session, setSession] = useState<UploadResponse | null>(null);
     const [error, setError] = useState("");
 
 

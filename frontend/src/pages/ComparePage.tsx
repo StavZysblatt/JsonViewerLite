@@ -2,11 +2,13 @@ import { useState } from "react";
 import { compareSessions } from "../api/compare";
 import styles from "./ComparePage.module.css";
 import SessionView from "../components/SessionView";
+import type { CompareResponse } from "../types/session";
+
 
 export default function ComparePage() {
     const [id1, setId1] = useState("");
     const [id2, setId2] = useState("");
-    const [result, setResult] = useState<any>(null);
+    const [result, setResult] = useState<CompareResponse | null>(null);
     const [error, setError] = useState("");
 
     async function handleCompare(){

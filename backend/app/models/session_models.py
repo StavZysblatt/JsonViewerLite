@@ -22,6 +22,7 @@ class SummaryModel(BaseModel):
 class UploadResponseModel(BaseModel):
     parsed: ParsedSessionModel
     summary: SummaryModel
+    id: str
 
 class CompareRequestModel(BaseModel):
     sessionIds: List[str]

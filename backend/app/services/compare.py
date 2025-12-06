@@ -34,11 +34,16 @@ def compare_logic(parsed1: ParsedSessionModel, summary1: SummaryModel, parsed2: 
     md1 = parsed1.metadata.data
     md2 = parsed2.metadata.data
 
+    all_keys = set((md1.keys()) | set(md2.keys()))  #Unioning all keys for comparison
+
     meta_diferences = {}
 
-    for key in md1.keys():
-        if key in md2 and md1[key] != md2[key]:
-            meta_diferences[key] = f"{md1[key]} vs {md2[key]}"
+    for key in all_keys:
+        v1 = md1.get(key)
+        v2 = md2.get(key)
+
+        if v1 != v2:
+            meta_diferences[key] = f"{v1} vs {v2}"
         
     diff["metadataDiff"] = meta_diferences
 

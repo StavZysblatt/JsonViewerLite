@@ -2,10 +2,11 @@ import { useState } from "react";
 import { uploadSession } from "../api/upload";
 import styles from "./UploadPage.module.css";
 import SessionView from "../components/SessionView";
+import type { UploadResponse } from "../types/session";
 
 export default function UploadPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<UploadResponse | null>(null);
   const [error, setError] = useState("");
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {

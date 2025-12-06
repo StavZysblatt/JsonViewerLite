@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UploadPage from "./pages/UploadPage";
 import ComparePage from "./pages/ComparePage";
 import NavBar from "./components/NavBar";

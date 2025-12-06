@@ -1,6 +1,7 @@
 import { api } from "./client";
+import type { UploadResponse } from "../types/session";
 
 export async function getSession(id: string) {
-    return api(`/sessions/${id}`);
+    return api<UploadResponse>(`/sessions/${id}`);
 }
 

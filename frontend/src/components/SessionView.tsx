@@ -1,13 +1,18 @@
 import styles from "./SessionView.module.css";
+import type { ParsedSession, Summary, UploadResponse, CompareSession, Eventitem } from "../types/session";
 
-export default function SessionView({data}: any) {
+type SessionViewProps = {
+  data: UploadResponse | CompareSession;
+};
 
-    const session = data.parsed;
-    const summary = data.summary;
+export default function SessionView({data}: SessionViewProps) {
+
+    const session: ParsedSession = data.parsed;
+    const summary: Summary = data.summary;
 
     const eventCounts = summary.eventCounts || {};
     const metadata = session.metadata?.data || {};
-    const events = session.events?.categories || data.events || {};
+    const events = session.events?.categories || {};
 
     function formatItem(item: any) {
         return Object.entries(item).map(([k, v]: [string, any]) => {
@@ -57,15 +62,13 @@ export default function SessionView({data}: any) {
             <div className={styles.card}>
             {Object.entries(events).map(([key, items]: any) => {
 
-                if (key === "categories") return null;
-
                 if (!Array.isArray(items)) return null;
 
                 return (
                     <div key={key} className={styles.eventCategory}>
                         <p className={styles.eventCategoryTitle}>{key}</p>
 
-                        {items.map((item: any, index: number) => (
+                        {items.map((item: Eventitem, index: number) => (
                             <p key={index} className={styles.eventItem}>
                                 <strong>{formatItem(item)}</strong>
                             </p>
