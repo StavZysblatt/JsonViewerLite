@@ -3,18 +3,17 @@ import json
 from app.services.parser import parse_session, build_summary
 from app.models.session_models import (
     ParsedSessionModel,
+    SessionDataModel,
     SummaryModel,
-    UploadResponseModel,
     CompareRequestModel,
-    CompareResponseModel,
-    CompareSessionModel
+    CompareResponseModel
 )
 from app.crud.session_crud import save_session, get_session_by_id
 from app.services.compare import compare_logic
 
 router = APIRouter()
 
-@router.post('/upload', response_model=UploadResponseModel)
+@router.post('/upload', response_model=SessionDataModel)
 async def upload_session(file: UploadFile = File(...)): 
     content = await file.read()
     try:
@@ -23,7 +22,7 @@ async def upload_session(file: UploadFile = File(...)):
         summary = build_summary(parsed)
         session_id = await save_session(parsed, summary)
 
-        return UploadResponseModel(
+        return SessionDataModel(
             id=session_id,
             parsed=parsed,
             summary=summary
@@ -80,31 +79,23 @@ async def compare_sessions(request: CompareRequestModel):
 
     diff = compare_logic(parsed1, summary1, parsed2, summary2)
 
-    return {
-        "sessions": [
-            {
-                "id": ids[0],
-                "parsed": parsed1,
-                "summary": summary1
-            },
-            {
-                "id": ids[1],
-                "parsed": parsed2,
-                "summary": summary2
-            }
+    return CompareResponseModel(
+        sessions = [
+            SessionDataModel(id=ids[0], parsed=parsed1, summary=summary1),
+            SessionDataModel(id=ids[1], parsed=parsed2, summary=summary2)
         ],
-        "diff": diff
-    }
+        diff=diff
+    )    
 
-@router.get("/sessions/{session_id}", response_model=CompareSessionModel)
+@router.get("/sessions/{session_id}", response_model=SessionDataModel)
 async def get_session(session_id: str):
     doc = await get_session_by_id(session_id)
 
     if not doc:
         raise HTTPException(status_code=404, detail="Session not found")
     
-    return {
-        "id": str(doc["_id"]),
-        "parsed": doc["parsed"],
-        "summary": doc["summary"]
-    }
+    return SessionDataModel(
+        id=str(doc["_id"]),
+        parsed=ParsedSessionModel(**doc["parsed"]),
+        summary=SummaryModel(**doc["summary"])
+    )
