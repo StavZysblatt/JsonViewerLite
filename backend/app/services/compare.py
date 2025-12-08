@@ -12,13 +12,13 @@ def compare_logic(parsed1: ParsedSessionModel, summary1: SummaryModel, parsed2: 
 
     shared = list(categories1 & categories2)
     missingFromS1 = list(categories2 - categories1)
-    missingfromS2 = list(categories1 - categories2)
+    missingFromS2 = list(categories1 - categories2)
 
     all_categories = categories1.union(categories2)
 
-    categoryDiffs = {
-        category: {
-            "s1": summary1.eventCounts.get(category, 0),
+    categoryDiffs = {                                     #category is the outer dict key that holds a dictionary value (s1 / s2)
+        category: {                                       #s1/s2 are inner dict keys that hold the eventcount of a category as a value
+            "s1": summary1.eventCounts.get(category, 0),  #For each category, create a dict showing how many events appeared in session 1 and 2
             "s2": summary2.eventCounts.get(category, 0)
         }
         for category in all_categories
@@ -27,7 +27,7 @@ def compare_logic(parsed1: ParsedSessionModel, summary1: SummaryModel, parsed2: 
     diff["events"] = {
         "sharedCategories": shared,
         "missingFromS1": missingFromS1,
-        "missingFromS2": missingfromS2,
+        "missingFromS2": missingFromS2,
         "categoryDiffs": categoryDiffs
     }
 
@@ -43,7 +43,7 @@ def compare_logic(parsed1: ParsedSessionModel, summary1: SummaryModel, parsed2: 
         v2 = md2.get(key)
 
         if v1 != v2:
-            meta_diferences[key] = f"{v1} vs {v2}"
+            meta_diferences[key] = f"{v1} vs {v2}" #If the keys do not match then we can compare them, Else, skip
         
     diff["metadataDiff"] = meta_diferences
 

@@ -71,7 +71,7 @@ async def compare_sessions(request: CompareRequestModel):
     if not s1 or not s2:
         raise HTTPException(status_code=404, detail="One or both sessions not found")
     
-    parsed1 = ParsedSessionModel(**s1["parsed"])
+    parsed1 = ParsedSessionModel(**s1["parsed"]) #Unpacking the session dict to send each dict key as a named argument (For my model)
     summary1 = SummaryModel(**s1["summary"])
 
     parsed2 = ParsedSessionModel(**s2["parsed"])
@@ -81,8 +81,8 @@ async def compare_sessions(request: CompareRequestModel):
 
     return CompareResponseModel(
         sessions = [
-            SessionDataModel(id=ids[0], parsed=parsed1, summary=summary1),
-            SessionDataModel(id=ids[1], parsed=parsed2, summary=summary2)
+            SessionDataModel(id=str(s1["_id"]), parsed=parsed1, summary=summary1),
+            SessionDataModel(id=str(s2["_id"]), parsed=parsed2, summary=summary2)
         ],
         diff=diff
     )    
