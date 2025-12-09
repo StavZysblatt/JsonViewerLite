@@ -10,7 +10,7 @@ export default function UploadPage() {
   const [error, setError] = useState("");
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const selectedFile = e.target.files?.[0];
+    const selectedFile = e.target.files?.[0]; //HTML allows selecting multiple files, We want to access the first one.
     if (!selectedFile) return;
 
     setFile(selectedFile);   // store the real file
@@ -18,7 +18,8 @@ export default function UploadPage() {
 
   async function handleUpload() {
     setError("");
-
+    setResult(null);
+    
     if (!file) {
       setError("No file selected");
       return;
@@ -37,7 +38,7 @@ export default function UploadPage() {
     <h2 className={styles.title}>Upload JSON Session</h2>
 
     <div className={styles.uploadSection}>
-      <input type="file" accept=".json" onChange={handleFileChange} />
+      <input type="file" accept=".json" onChange={handleFileChange} /> //Show a file picker and filter out all files who are not json (allow only json)
       <button onClick={handleUpload}>Upload</button>
     </div>
 

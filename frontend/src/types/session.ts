@@ -28,7 +28,7 @@ export interface Summary {
 }
 
 export interface UploadResponse { 
-    id?: string
+    id: string
     parsed: ParsedSession;
     summary: Summary;
 }

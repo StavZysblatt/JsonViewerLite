@@ -2,8 +2,8 @@ import styles from "./SessionView.module.css";
 import type { ParsedSession, Summary, UploadResponse, CompareSession, Eventitem } from "../types/session";
 
 type SessionViewProps = {
-  data: UploadResponse | CompareSession;
-};
+  data: UploadResponse | CompareSession; //Declaring the props type we will recieve
+};                                      //data can be either an upload or a compare
 
 export default function SessionView({data}: SessionViewProps) {
 
@@ -36,7 +36,7 @@ export default function SessionView({data}: SessionViewProps) {
             <div className={styles.section}>
                 <h3>Summary</h3>
                 <div className={styles.card}>
-                {Object.keys(eventCounts).map((key) =>(
+                {Object.keys(eventCounts).map((key) =>( //create a list of categories and loop through the list to render each cat
                     <p key={key}>
                         {key}: <strong>{eventCounts[key]}</strong>
                     </p>
@@ -60,15 +60,15 @@ export default function SessionView({data}: SessionViewProps) {
         <div className={styles.section}>
             <h3>Events</h3>
             <div className={styles.card}>
-            {Object.entries(events).map(([key, items]: any) => {
-
-                if (!Array.isArray(items)) return null;
+            {Object.entries(events).map(([key, items]: any) => { //Converts events to an array of [key,value] pairs so we can iterate over it
+                                                                //We iterate over the key (event name) and the value (array of actual events)
+                if (!Array.isArray(items)) return null;        //The value can hold multiple arrays that each of them represets the actual event data
 
                 return (
                     <div key={key} className={styles.eventCategory}>
                         <p className={styles.eventCategoryTitle}>{key}</p>
 
-                        {items.map((item: Eventitem, index: number) => (
+                        {items.map((item: Eventitem, index: number) => ( //Iterate over each item array, Index represents the event array location inside the item array
                             <p key={index} className={styles.eventItem}>
                                 <strong>{formatItem(item)}</strong>
                             </p>
