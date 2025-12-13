@@ -10,6 +10,7 @@ from app.models.session_models import (
 )
 from app.crud.session_crud import save_session, get_session_by_id
 from app.services.compare import compare_logic
+from app.services.rabbitmq_client import publish_session_uploaded
 
 router = APIRouter()
 
@@ -21,6 +22,7 @@ async def upload_session(file: UploadFile = File(...)):
         parsed = parse_session(data)
         summary = build_summary(parsed)
         session_id = await save_session(parsed, summary)
+        await publish_session_uploaded(str(session_id))
 
         return SessionDataModel(
             id=session_id,
