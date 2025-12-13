@@ -20,9 +20,11 @@ export default function ComparePage() {
         } 
 
         try {
+            setResult(null);
             const response = await compareSessions(id1, id2);
             setResult(response);
         } catch (err: any) {
+            setResult(null);
             setError(err.message);
         }
     }
@@ -33,16 +35,16 @@ export default function ComparePage() {
             <h2 className={styles.title}>Compare Sessions</h2>
 
             <input placeholder="Session ID 1"
-            value={id1}
-            onChange={(e) => setId1(e.target.value)}
-            className={styles.input}
+                value={id1}
+                onChange={(e) => setId1(e.target.value)} //Whenever the user types something, Update the value in id1 (Rerenders the component each time)
+                className={styles.input}
             />
 
             <input
-            placeholder="Session ID 2"
-            value={id2}
-            onChange={(e) => setId2(e.target.value)}
-            className={styles.input}
+                placeholder="Session ID 2"
+                value={id2}
+                onChange={(e) => setId2(e.target.value)}
+                className={styles.input}
             />
             
             <button className={styles.button} onClick={handleCompare}>Compare</button>

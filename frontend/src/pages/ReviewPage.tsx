@@ -23,6 +23,7 @@ export default function ReviewPage(){
             const result = await getSession(sessionId);
             setSession(result)
         } catch (err: any){
+            setSession(null);
             setError(err.message);
         }
     }
